@@ -1,0 +1,23 @@
+class Solution {
+    public int firstUniqChar(String s) {
+        // Step 1: Create a "frequency" array for the 26 letters (a-z)
+        int[] count = new int[26];
+        
+        // Step 2: Traverse the string ONCE to count everything
+        for (int i = 0; i < s.length(); i++) {
+            // 'a' - 'a' = 0, 'b' - 'a' = 1, etc.
+            count[s.charAt(i) - 'a']++;
+        }
+        
+        // Step 3: Traverse the string A SECOND TIME to check the counts
+        for (int i = 0; i < s.length(); i++) {
+            // If the count of this character is exactly 1, it's our winner!
+            if (count[s.charAt(i) - 'a'] == 1) {
+                return i;
+            }
+        }
+        
+        // If no character had a count of 1
+        return -1;
+    }
+}
