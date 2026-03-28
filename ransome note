@@ -1,0 +1,34 @@
+class Solution {
+    public boolean canConstruct(String ransomNote, String magazine) {
+        // This is your 'new string' to collect matching elements
+        StringBuilder result = new StringBuilder();
+        
+        // We convert magazine to a StringBuilder so we can "remove" used elements
+        StringBuilder remainingMagazine = new StringBuilder(magazine);
+
+        // 1. Start checking elements of the ransomNote
+        for (int i = 0; i < ransomNote.length(); i++) {
+            char currentNoteChar = ransomNote.charAt(i);
+            
+            // 2. For the current element, search the WHOLE magazine
+            for (int j = 0; j < remainingMagazine.length(); j++) {
+                
+                if (remainingMagazine.charAt(j) == currentNoteChar) {
+                    // MATCH FOUND! 
+                    // 3. Add that element to your result string
+                    result.append(currentNoteChar);
+                    
+                    // 4. "Remove" it from the magazine so it's not checked again
+                    remainingMagazine.deleteCharAt(j);
+                    
+                    // 5. Move to the next element in the ransomNote
+                    break; 
+                }
+            }
+        }
+
+        // 6. After finishing all elements, compare the length
+        // If the result has the same number of characters as the note, we found them all!
+        return result.length() == ransomNote.length();
+    }
+}
