@@ -1,0 +1,23 @@
+class Solution {
+    public int sumOfLeftLeaves(TreeNode root) {
+       if (root == null) return 0;
+        
+        int sum = 0;
+        
+        // 1. Check if the LEFT child is a leaf
+        if (root.left != null) {
+            if (root.left.left == null && root.left.right == null) {
+                // It's a left leaf! Add its value.
+                sum += root.left.val;
+            } else {
+                // It's not a leaf, so keep searching down the left side
+                sum += sumOfLeftLeaves(root.left);
+            }
+        }
+        
+        // 2. Always search the right side for more left leaves
+        sum += sumOfLeftLeaves(root.right);
+        
+        return sum;
+    }
+}
