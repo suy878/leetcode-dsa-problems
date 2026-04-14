@@ -1,0 +1,22 @@
+class Solution {
+    public int[] smallerNumbersThanCurrent(int[] nums) {
+        List<Integer> re = new ArrayList<>();
+        int i = nums.length;
+        while(i>0){
+            int count=0;
+            int current = nums[i-1];
+            for(int k=0;k<nums.length;k++){
+                if(nums[k]<current){
+                    count++;
+                }
+            }
+            re.add(count);
+            i--;
+        }
+        int[] res = new int[nums.length];
+        for(int j = 0 ;j<nums.length;j++){
+            res[j]=re.get(nums.length-1-j);
+        }
+        return res;
+    }
+}
