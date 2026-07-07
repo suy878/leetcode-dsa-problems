@@ -1,0 +1,16 @@
+class Solution {
+    public List<Integer> findDuplicates(int[] nums) {
+        HashMap<Integer,Integer> hs =new HashMap<>();
+        for(int num1 : nums){
+            hs.put(num1,hs.getOrDefault(num1,0)+1);
+
+        }
+        List<Integer> as =new ArrayList<>();
+        for(Map.Entry<Integer,Integer>entry :hs.entrySet()){
+            if(entry.getValue()>1){
+                as.add(entry.getKey());
+            }
+        }
+        return as;
+    }
+}
