@@ -1,0 +1,33 @@
+class Solution {
+    public List<String> binaryTreePaths(TreeNode root) {
+        return path(root); // Return the result from path()
+    }
+    
+    public List<String> path(TreeNode node1) {
+        List<String> ls1 = new ArrayList<>();
+
+        if (node1 == null) {
+            return ls1;
+        }
+        
+        // If it's a leaf node, add its value as the base path
+        if (node1.left == null && node1.right == null) {
+            ls1.add(String.valueOf(node1.val));
+            return ls1;
+        }
+        
+        // Get paths from the left subtree and append current node's value
+        List<String> leftPaths = path(node1.left);
+        for (String p : leftPaths) {
+            ls1.add(node1.val + "->" + p);
+        }
+        
+        // Get paths from the right subtree and append current node's value
+        List<String> rightPaths = path(node1.right);
+        for (String p : rightPaths) {
+            ls1.add(node1.val + "->" + p);
+        }
+        
+        return ls1; // Return the final combined list
+    }
+}
