@@ -1,0 +1,15 @@
+class Solution {
+    public String mostCommonWord(String paragraph, String[] banned) {
+     String[] word =paragraph.toLowerCase().split("\\W+");
+     HashMap<String,Integer> map =new HashMap<>();
+     for(String words : word){
+        map.put(words,map.getOrDefault(words,0)+1);
+     }
+     for (String b : banned) {
+            map.remove(b);
+        }  
+     map.remove("");
+    String maxKey = Collections.max(map.entrySet(), Map.Entry.comparingByValue()).getKey();
+ return maxKey;
+    }
+}
